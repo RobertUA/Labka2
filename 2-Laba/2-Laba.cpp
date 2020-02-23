@@ -7,6 +7,7 @@ int main()
 	cout << "ROBERT LOHHHHHHHHHHHHJHH";
 	string s = "Robert loh";
 	s++;
+	//МАКС ЛОХ
 	//string s ="Robert loh";
 
 
