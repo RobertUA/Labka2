@@ -7,7 +7,7 @@ int main()
 	cout << "ROBERT LOHHHHHHHHHHHHJHH";
 	string s = "Robert loh";
 	s++;
-
+	//string s ="Robert loh";
 
 
 	//Я НЕ ЛОХ!
