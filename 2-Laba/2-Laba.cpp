@@ -17,8 +17,8 @@ int main()
 	int score[20] = { 0 };
 	string country[20];
 
-	readf("C:\\DDDev\\test1.csv", country, vvv, kk);
-	readf("C:\\DDDev\\test2.csv", country, vvv, kk);
+	readf("D:\\eurovision1.csv", country, vvv, kk);
+	readf("D:\\eurovision2.csv", country, vvv, kk);
 
 	//outm(country, vvv, kk);
 	for (int i = 0; i < 20; i++) countscore(i, vvv, kk, score);
@@ -30,9 +30,10 @@ int main()
 
 void topout(string country[20], int score[20], int k)
 {
-	ofstream fout("results.csv");
+	ofstream fout("D:\\results.csv");
 	for (int i = 0; i < (k > 10 ? 10 : k); i++)
 	{
+		if (country[i].find('\n') == 0) country[i].erase(0, 1);
 		fout << country[i] << "," << score[i] << endl;
 	}
 }
