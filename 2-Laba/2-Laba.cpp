@@ -43,7 +43,7 @@ void top10sort(string country[20], int score[20], int k)
 	string hh;
 	for (int i = 0; i < k - 1; i++)
 	{
-		for (int j = i; j < k; j++)
+		for (int j = i+1; j < k; j++)
 		{
 			if (score[i] < score[j])
 			{
