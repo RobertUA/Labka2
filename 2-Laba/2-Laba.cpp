@@ -2,27 +2,28 @@
 #include <fstream>
 #include <string>
 
+
 using namespace std;
 
 void readf(string filename, string country[20], int vvv[20][20], int &kk);
-void outm(string country[20], int vvv[20][20], int k);
 void countscore(int ctry, int vvv[20][20], int k, int score[20]);
 void top10sort(string country[20], int score[20], int k);
 void topout(string country[20], int score[20], int k);
 
 int main()
 {
+	
 	int kk = 0;
 	int vvv[20][20];
 	int score[20] = { 0 };
 	string country[20];
+	readf("D:\\Euro\\eurovision1.csv", country, vvv, kk);
+	readf("D:\\Euro\\eurovision2.csv", country, vvv, kk);
+	
 
-	readf("D:\\eurovision1.csv", country, vvv, kk);
-	readf("D:\\eurovision2.csv", country, vvv, kk);
-
-	//outm(country, vvv, kk);
-	for (int i = 0; i < 20; i++) countscore(i, vvv, kk, score);
-
+	for (int i = 0; i < 20; i++) {
+		countscore(i, vvv, kk, score);
+	}
 	top10sort(country, score, kk);
 	topout(country, score, kk);
 	return 0;
@@ -31,14 +32,15 @@ int main()
 void topout(string country[20], int score[20], int k)
 {
 	ofstream fout("D:\\results.csv");
-	for (int i = 0; i < (k > 10 ? 10 : k); i++)
+	for (int i = 0; i < 10; i++)
 	{
-		if (country[i].find('\n') == 0) country[i].erase(0, 1);
+		if (country[i].find('\n') == 0) {
+			country[i].erase(0, 1);
+		}
 		fout << country[i] << "," << score[i] << endl;
 	}
 }
-void top10sort(string country[20], int score[20], int k)
-{
+void top10sort(string country[20], int score[20], int k)	{
 	int h;
 	string hh;
 	for (int i = 0; i < k - 1; i++)
@@ -81,33 +83,26 @@ void countscore(int ctry, int vvv[20][20], int k, int score[20])
 			}
 		}
 	}
-	for (int i = 0; i < (k > 10 ? 10 : k); i++)
+	for (int i = 0; i < 10; i++)
 	{
-		if(i==0) score[nv[i][1]] += 12;
-		else if(i==1) score[nv[i][1]] += 10;
-		else if(i>=2 && i<=9) score[nv[i][1]] += 10 - i;
-		//cout << nv[i][0] << " " << nv[i][1] << endl;
-	}
-}
-void outm(string country[20], int vvv[20][20], int k)
-{
-	for (int i = 0; i < k; i++)
-	{
-		if(country[i].find('\n')==0) country[i].erase(0, 1);
-		cout << country[i];
-		for (int j = 0; j < 20; j++)
-		{
-			cout << " " << vvv[i][j];
+		if (i == 0) {
+			score[nv[i][1]] += 12;
 		}
-		cout <<  endl;
+		else if (i == 1) {
+			score[nv[i][1]] += 10;
+		}
+		else if (i >= 2 && i <= 10) {
+			score[nv[i][1]] += 10 - i;
+		}
 	}
 }
+
 void readf(string filename, string country[20], int vvv[20][20], int &kk)
 {
 	ifstream fin(filename);
 	string LINE;
 	string add;
-	int c = -1, w = 0;
+	int c = -1;
 	fin >> c;
 	for (int i = 0+kk; i < c+kk; i++)
 	{
@@ -122,3 +117,4 @@ void readf(string filename, string country[20], int vvv[20][20], int &kk)
 	}
 	kk += c;
 }
+
