@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <fstream>
+#include <Windows.h>
 #include <string>
 
 using namespace std;
@@ -15,8 +16,31 @@ int main()
 	int vvv[20][20];
 	int score[20] = { 0 };
 	string country[20];
-	readf("D:\\Euro\\eurovision1.csv", country, vvv, kk);
-	readf("D:\\Euro\\eurovision2.csv", country, vvv, kk);
+
+	WIN32_FIND_DATAA findData;
+	HANDLE hfind;
+	string p;
+	setlocale(0, "ukrainian");
+	cout << "Введiть шлях до папки з вхiдними файлами: ";
+	cin >> p;
+	p += "\\*.csv";
+	
+	hfind = FindFirstFileA(p.c_str(), &findData);
+	if (hfind == INVALID_HANDLE_VALUE)
+	{
+		cout << "Cannot find file" << endl;
+		return -1;
+	}
+	do
+	{
+		string rrr = findData.cFileName;
+		readf(("D:\\Euro\\"+rrr), country, vvv, kk);
+		//cout << findData.cFileName << endl;
+		//cout << rrr << endl;
+	}
+	while (FindNextFileA(hfind, &findData));
+
+	FindClose(hfind);
 
 	for (int i = 0; i < 20; i++) countscore(i, vvv, kk, score);
 	top10sort(country, score, kk);
@@ -26,12 +50,17 @@ int main()
 
 void topout(string country[20], int score[20], int k)
 {
-	ofstream fout("D:\\Euro\\results.csv");
+	string ff;
+	cout << "Введiть шлях до папки для збереження результату: ";
+	cin >> ff;
+	ff += "\\results.csv";
+	ofstream fout(ff);
 	for (int i = 0; i < (k > 10 ? 10 : k); i++)
 	{
 		if (country[i].find('\n') == 0) country[i].erase(0, 1);
 		fout << country[i] << "," << score[i] << endl;
 	}
+	fout.close();
 }
 void top10sort(string country[20], int score[20], int k)
 {
@@ -103,4 +132,5 @@ void readf(string filename, string country[20], int vvv[20][20], int &kk)
 		vvv[i][19] = stoi(LINE);
 	}
 	kk += c;
+	fin.close();
 }
