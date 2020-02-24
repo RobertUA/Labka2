@@ -28,13 +28,4 @@ void readf(string filename, string country[20], int vvv[20][20])
 			fin >> vvv[i][j];
 		}
 	}
-	for (int i = 0; i < c; i++)
-	{
-		cout << country[i];
-		for (int j = 0; j < 20; j++)
-		{
-			cout << " " << vvv[i][j];
-		}
-		cout << endl;
-	}
 }
