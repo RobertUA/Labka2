@@ -2,7 +2,7 @@
 #include <fstream>
 #include <Windows.h>
 #include <string>
-#include"Debug\Header.h"
+#include"Header.h"
 #include"Source5.cpp"
 using namespace std;
 
