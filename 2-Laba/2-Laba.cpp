@@ -2,11 +2,11 @@
 #include <fstream>
 #include <Windows.h>
 #include <string>
-#include"Header.h"
-#include"Source5.cpp"
+
 using namespace std;
 
-
+#include "Header.h"
+#include "Source5.cpp"
 
 int main()
 {
@@ -21,4 +21,3 @@ int main()
 	topout(country, score, k);
 	return 0;
 }
-

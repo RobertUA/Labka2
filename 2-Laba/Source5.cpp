@@ -1,10 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <Windows.h>
-#include <string>
-
-using namespace std;
-
 void filein(string country[20], int vvv[20][20], int& k)
 {
 	WIN32_FIND_DATAA findData;
