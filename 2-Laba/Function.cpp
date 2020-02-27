@@ -88,8 +88,7 @@ void readf(string filename, string country[20], int vvv[20][20], int& k)
 {
 	ifstream fin(filename);
 	string LINE;
-	string add;
-	int c = -1;
+	int c;
 	fin >> c;
 	for (int i = 0 + k; i < c + k; i++)
 	{
